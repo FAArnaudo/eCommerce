@@ -2,7 +2,7 @@
 
 This Java project implements a **concurrent system** for managing deliveries in a logistics company that ships products purchased through an e-commerce platform.
 
-![System Overview](docs/system-overview.png) <!-- Replace with the actual image path -->
+<img src="https://1000marcas.net/wp-content/uploads/2020/11/Java-logo.png" width="50" height="35" />
 
 ---
 
