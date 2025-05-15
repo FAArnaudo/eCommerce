@@ -1,26 +1,30 @@
 public class RegistersContainer {
 
-    private OrdersRegister inPreparation;
-    private OrdersRegister inTransit;
-    private OrdersRegister filed;
-    private OrdersRegister delivered;
+    private final OrdersRegister inPreparation;
+    private final OrdersRegister inTransit;
+    private final OrdersRegister filed;
+    private final OrdersRegister delivered;
+    private final OrdersRegister verified;
     public RegistersContainer() {
         inPreparation = new OrdersRegister();
         inTransit = new OrdersRegister();
         filed = new OrdersRegister();
         delivered = new OrdersRegister();
+        verified = new OrdersRegister();
     }
 
     public OrdersRegister getOrderRegister(ORDER_STATE state){
         switch (state){
-            case ORDER_IN_PREPARATION:
+            case ORDERS_IN_PREPARATION:
                 return inPreparation;
-            case ORDER_IN_TRANSIT:
+            case ORDERS_IN_TRANSIT:
                 return inTransit;
-            case FILED_ORDER:
+            case FILED_ORDERS:
                 return filed;
-            case ORDER_DELIVERED:
+            case DELIVERED_ORDERS:
                 return delivered;
+            case VERIFIED_ORDERS:
+                return verified;
         }
         return null;
     }

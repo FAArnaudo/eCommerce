@@ -2,19 +2,21 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class OrdersRegister {
-    private ArrayList<Order> orders;
+    private final ArrayList<Order> orders;
     private Random random;
+
     public OrdersRegister() {
+        orders = new ArrayList<>();
     }
 
     /**
      *
-     * */
-    public void addOrder(Order order){
+     */
+    public void addOrder(Order order) {
         orders.add(order);
     }
 
-    public Order getOrder(){
+    public Order getOrder() {
         Order order = null;
         int orderNumber = random.nextInt(getSizeRegister());
 
@@ -23,11 +25,11 @@ public class OrdersRegister {
         return order;
     }
 
-    public  boolean deleteOrder(Order order){
+    public boolean deleteOrder(Order order) {
         return orders.remove(order);
     }
 
-    public int getSizeRegister(){
+    public int getSizeRegister() {
         return orders.size();
     }
 }
