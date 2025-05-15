@@ -25,14 +25,6 @@ public class LockerGrid {
         int row = random.nextInt(ROWS_NUMBER);
         int column = random.nextInt(COLUMNS_NUMBER);
 
-        Locker locker = lockers[row][column];
-
-        if (!locker.isTaken()) {
-            locker.setTaken(true);
-        } else {
-            locker = null;
-        }
-
-        return locker;
+        return lockers[row][column];
     }
 }

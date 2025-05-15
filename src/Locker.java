@@ -6,7 +6,7 @@ public class Locker {
 
     public Locker() {
         setState(LOCKER_STATES.EMPTY);
-        setCounter(0);
+        counter = 0;
         setTaken(false);
     }
 
@@ -22,8 +22,8 @@ public class Locker {
         return counter;
     }
 
-    public void setCounter(int counter) {
-        this.counter = counter;
+    public void incrementCounter() {
+        this.counter++;
     }
 
     public boolean isTaken() {
