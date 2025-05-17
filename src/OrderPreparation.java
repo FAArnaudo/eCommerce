@@ -19,7 +19,7 @@ public class OrderPreparation implements Runnable {
             if (checkLocker(locker)) {
                 locker.incrementCounter();
                 order = getOrderGenerator().getOrder();
-                order.setTaken(false);
+                locker.setOrder(order);
                 getECommerceManagment().getRegistersContainer().getOrderRegister(ORDER_STATE.ORDERS_IN_PREPARATION).addOrder(order);
 
                 incrementOrdersProcessed();
@@ -29,7 +29,7 @@ public class OrderPreparation implements Runnable {
                 }*/
 
                 try {
-                    TimeUnit.MILLISECONDS.sleep(75);
+                    TimeUnit.MILLISECONDS.sleep(100);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -47,8 +47,8 @@ public class OrderPreparation implements Runnable {
         boolean isLockerOk = false;
 
         synchronized (locker) {
-            if (!locker.isTaken()) {
-                locker.setTaken(true);
+            if (locker.getState() == LOCKER_STATES.EMPTY) {
+                locker.setState(LOCKER_STATES.IN_USE);
                 isLockerOk = true;
             }
         }
@@ -65,13 +65,14 @@ public class OrderPreparation implements Runnable {
     }
 
     public void checkOrdersProcessed() throws InterruptedException {
-        if (getOrdersProcessed() == 200) {
+        if (getOrdersProcessed() == 500) {
             throw new InterruptedException();
         }
     }
 
     public synchronized void incrementOrdersProcessed() {
         ordersProcessed++;
+        System.out.println("Orden en preparacion: " + ordersProcessed);
     }
 
     public synchronized int getOrdersProcessed() {

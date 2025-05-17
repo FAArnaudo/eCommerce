@@ -3,7 +3,7 @@ public class Main {
         long inicio = System.currentTimeMillis();
 
         int firstProcess = 3;
-        int secondProcess = 0;
+        int secondProcess = 2;
         int thirdProcess = 0;
         int fourthProcess = 0;
         int logThread = 0;
