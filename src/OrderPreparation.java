@@ -19,19 +19,17 @@ public class OrderPreparation implements Runnable {
             if (checkLocker(locker)) {
                 locker.incrementCounter();
                 order = getOrderGenerator().getOrder();
-                locker.setOrder(order);
-                getECommerceManagment().getRegistersContainer().getOrderRegister(ORDER_STATE.ORDERS_IN_PREPARATION).addOrder(order);
+                if (order != null) {
+                    locker.setOrder(order);
+                    getECommerceManagment().getRegistersContainer().getOrderRegister(ORDER_STATE.ORDERS_IN_PREPARATION).addOrder(order);
 
-                incrementOrdersProcessed();
+                    incrementOrdersProcessed();
 
-                /*synchronized (this){
-                    System.out.println("Orden en preparacion: " + getOrdersProcessed());
-                }*/
-
-                try {
-                    TimeUnit.MILLISECONDS.sleep(100);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(100);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
 
