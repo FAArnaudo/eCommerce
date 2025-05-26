@@ -4,7 +4,7 @@ public class Main {
 
         int firstProcess = 3;
         int secondProcess = 2;
-        int thirdProcess = 0;
+        int thirdProcess = 3;
         int fourthProcess = 0;
         int logThread = 0;
 

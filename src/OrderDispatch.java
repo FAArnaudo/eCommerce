@@ -6,6 +6,7 @@ public class OrderDispatch implements Runnable {
     private final ECommerceManagment eCommerceManagment;
     private final Random random;
     private int ordersProcessed;
+
     public OrderDispatch(ECommerceManagment eCommerceManagment) {
         this.eCommerceManagment = eCommerceManagment;
         random = new Random();
@@ -13,11 +14,11 @@ public class OrderDispatch implements Runnable {
 
     @Override
     public void run() {
-        while (true){
+        while (true) {
             Locker locker = null;
             Order order = getECommerceManagment().getRegistersContainer().getOrderRegister(ORDER_STATE.ORDERS_IN_PREPARATION).getOrder();
 
-            if(order != null && verifyOrderAndUser(order)){
+            if (order != null && verifyOrderAndUser(order)) {
                 getECommerceManagment().getRegistersContainer().getOrderRegister(ORDER_STATE.ORDERS_IN_PREPARATION).deleteOrder(order);
                 locker = getECommerceManagment().getLockerGrid().getLockerByOrder(order.getOrderNumber());
                 locker.setOrder(null);
@@ -31,8 +32,7 @@ public class OrderDispatch implements Runnable {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-            }
-            else if(order != null){
+            } else if (order != null) {
                 getECommerceManagment().getRegistersContainer().getOrderRegister(ORDER_STATE.ORDERS_IN_PREPARATION).deleteOrder(order);
                 locker = getECommerceManagment().getLockerGrid().getLockerByOrder(order.getOrderNumber());
                 locker.setOrder(null);
@@ -60,7 +60,7 @@ public class OrderDispatch implements Runnable {
         boolean pass = false;
         double probability = random.nextInt(100);
 
-        if(probability < 85){
+        if (probability < 85) {
             pass = true;
         }
         return pass;
