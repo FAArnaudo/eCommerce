@@ -27,4 +27,17 @@ public class LockerGrid {
 
         return lockers[row][column];
     }
+
+    public Locker getLockerByOrder(int orderNumber) {
+        for (int i = 0; i < ROWS_NUMBER; i++) {
+            for (int j = 0; j < COLUMNS_NUMBER; j++) {
+                Order order = lockers[i][j].getOrder();
+                if (order != null && order.getOrderNumber() == orderNumber){
+                    return lockers[i][j];
+                }
+            }
+        }
+
+        return null;
+    }
 }

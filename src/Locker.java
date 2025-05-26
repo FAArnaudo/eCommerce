@@ -2,12 +2,12 @@ public class Locker {
     private int lockerID;
     private LOCKER_STATES state;
     private int counter;
-    private boolean isTaken;
+    private Order order;
 
     public Locker() {
         setState(LOCKER_STATES.EMPTY);
+        order = null;
         counter = 0;
-        setTaken(false);
     }
 
     public LOCKER_STATES getState() {
@@ -26,19 +26,19 @@ public class Locker {
         this.counter++;
     }
 
-    public boolean isTaken() {
-        return isTaken;
-    }
-
-    public void setTaken(boolean taken) {
-        isTaken = taken;
-    }
-
     public int getLockerID() {
         return lockerID;
     }
 
     public void setLockerID(int lockerID) {
         this.lockerID = lockerID;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }
